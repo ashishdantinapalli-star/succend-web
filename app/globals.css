@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+:root {
+  /* Surfaces */
+  --color-surface: #faf9fd;
+  --color-surface-raised: #ffffff;
+  --color-surface-sunken: #f1eef8;
+  --color-line: #e5e0f2;
+  --color-line-strong: #d3caed;
+
+  /* Ink */
+  --color-ink: #17121f;
+  --color-ink-soft: #4c4560;
+  --color-ink-faint: #8a83a0;
+
+  /* Brand violet, taken from the Succend mark */
+  --color-brand: #5b3fe0;
+  --color-brand-dark: #241854;
+  --color-brand-darker: #150c33;
+  --color-brand-mid: #8a72f0;
+  --color-brand-pale: #efeafd;
+  --color-brand-pale-2: #f7f4fe;
+
+  /* Accents, drawn from the arrow/star mark */
+  --color-xp: #2f9d63;
+  --color-xp-glow: #6bd39a;
+  --color-gold: #cd8f22;
+  --color-gold-pale: #fbf0da;
+  --color-danger: #c94444;
+
+  --font-display: "Space Grotesk";
+  --font-body: "Inter";
+  --font-mono: "IBM Plex Mono";
+
+  --shadow-card: 0 1px 2px rgba(21, 12, 51, 0.04), 0 8px 24px -12px rgba(21, 12, 51, 0.12);
+  --shadow-pop: 0 12px 32px -8px rgba(91, 63, 224, 0.28);
+}
+
+@theme inline {
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-surface-sunken: var(--color-surface-sunken);
+  --color-line: var(--color-line);
+  --color-line-strong: var(--color-line-strong);
+
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-faint: var(--color-ink-faint);
+
+  --color-brand: var(--color-brand);
+  --color-brand-dark: var(--color-brand-dark);
+  --color-brand-darker: var(--color-brand-darker);
+  --color-brand-mid: var(--color-brand-mid);
+  --color-brand-pale: var(--color-brand-pale);
+  --color-brand-pale-2: var(--color-brand-pale-2);
+
+  --color-xp: var(--color-xp);
+  --color-xp-glow: var(--color-xp-glow);
+  --color-gold: var(--color-gold);
+  --color-gold-pale: var(--color-gold-pale);
+  --color-danger: var(--color-danger);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Respect reduced motion everywhere */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--color-brand-pale);
+  color: var(--color-brand-darker);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Quest bar fill texture -- diagonal hazard stripe, the signature motif */
+.quest-fill {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.16) 0px,
+    rgba(255, 255, 255, 0.16) 6px,
+    transparent 6px,
+    transparent 14px
+  ),
+  linear-gradient(90deg, var(--color-xp), var(--color-xp-glow));
+}
+
+@keyframes fill-in {
+  from { width: 0%; }
+}
+.quest-fill-animate {
+  animation: fill-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
