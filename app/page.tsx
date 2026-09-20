@@ -122,6 +122,18 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+        
+        {/* Features */}
+        <Features />
+
+        {/* HowItWorks */}
+        <HowItWorks />
+
+        {/* LeaderboardPreview */}
+        <LeaderboardPreview />
+
+        {/* About */}
+        <About />
 
         {/* Closing CTA */}
         <section className="mx-auto max-w-6xl px-6 py-20 text-center">
