@@ -1,62 +1,52 @@
-# Succend — v0.1 Foundation
+# Succend
 
-This is the application shell for Succend: responsive navigation, the
-landing page, login, and the Home dashboard, wired up with mock data. It
-is scoped intentionally — no backend, auth, AI, or payments — so it can
-be reviewed before the remaining Version 0.1 screens are built.
+**Turn your goals into progress that you can see.**
 
-## What's here
+Succend is a goal-tracking project that aims to make personal growth more engaging. It helps people stay consistent in their goals through XP, rewards, achievements, and ranks. 
 
-- **Landing page** (`/`) — brand intro, sign up / log in entry points.
-- **Login** (`/login`) — frontend-only form, no real authentication.
-- **Home dashboard** (`/home`) — greeting, level/XP, current goals, quick
-  "Create goal" action, progress summary, character preview, recent
-  achievements.
-- **App shell** — persistent desktop sidebar with active-state
-  indication and live level/XP; mobile top bar + bottom tab nav (Home,
-  Goals, Create, Achievements, Profile), with Shop/Settings intended to
-  live inside the mobile Profile menu once that screen exists.
+The project is being built as a web app, with a mobile app also planned.
 
-## Run it
+## How Succend currently looks: 
 
-```bash
-npm install
-npm run dev
-```
+Succend is still being developed. The web app has a landing page, a home dashboard, and a few prototype screens.
 
-Then visit `http://localhost:3000`, `/login`, or `/home`.
+- **Landing page:** This page helps introduce the user to the app, and how the app behaves. 
+- Features like login and settings are not fully developed yet, but will be soon. 
 
-## Structure
+The landing page and web app currently use demo data in many places. But more features and real functionality will be added as development continues.
 
-```
-app/
-  page.tsx              Landing page
-  login/page.tsx         Login
-  (app)/layout.tsx        Authenticated shell (sidebar/topbar/mobile nav)
-  (app)/home/page.tsx     Home dashboard
-components/
-  layout/    Sidebar, MobileNav, TopBar
-  ui/        Button, Card, Logo, QuestBar (XP bar), LevelBadge
-  goals/     GoalCard
-  character/ CharacterPreview
-  achievements/ AchievementBadge
-lib/
-  types.ts              Shared domain types (User, Goal, Achievement, …)
-  mock-data.ts            Mock dataset
-  services/              Mock service functions shaped like future API calls
-  nav.ts                 Single source of truth for nav items (desktop + mobile)
-```
+## Planned features
 
-## Notes for the next pass
+There is still a lot I want to add to Succend over time, including:
 
-- `lib/services/*` functions are already written with the async
-  signatures a real fetch call to a Django API would have — swapping
-  the mock bodies for `fetch()` calls should not require touching any
-  page or component code.
-- Routes referenced by nav/links but not yet built (`/goals`, `/goals/new`,
-  `/progress`, `/achievements`, `/character`, `/shop`, `/settings`,
-  `/profile`, `/signup`) will 404 until those screens are approved and
-  added.
-- Fonts are self-hosted via `@fontsource` (Space Grotesk, Inter, IBM Plex
-  Mono) rather than `next/font/google`, so the app builds and runs
-  without a network call to Google Fonts.
+- An item shop
+- 42 individual ranks
+- Friends and global connections
+- And many other feautres
+
+These features are planned and are not yet fully implemented or operational.
+
+## The current tech-stack for Succend looks like this: 
+
+- **Next.js** for the application framework.
+- **React** for the user interface.
+- **TypeScript** for typed application code.
+- **Tailwind CSS** for styling.
+- **Lucide React** for interface icons.
+
+The current prototype uses mock data and local service functions. The backend and database are in progress. This is a simple overview of the project, but more will be added soon. 
+
+## Development approach
+
+Succend is being built one step at a time, starting with the user interface and core interactions. The next stages involve improving the existing experience, adding persistent data, connecting a backend, and developing more advanced features.
+
+For now, the focus is on making the prototype reliable, improving the design, and building a foundation that can be expanded over time.
+
+## Project links
+
+- **Instagram:** [@succendapp](https://www.instagram.com/succendapp/)
+- **Source code:** [GitHub repository](https://github.com/ashishdantinapalli-star/succend-web)
+- **Current web app:** [Succend Landing site](https://succend-web.vercel.app/)
+
+---
+
