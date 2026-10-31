@@ -1,19 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  /* Surfaces */
+  /* ================================
+     LIGHT THEME
+     ================================ */
+
   --color-surface: #faf9fd;
   --color-surface-raised: #ffffff;
   --color-surface-sunken: #f1eef8;
   --color-line: #e5e0f2;
   --color-line-strong: #d3caed;
 
-  /* Ink */
   --color-ink: #17121f;
   --color-ink-soft: #4c4560;
   --color-ink-faint: #8a83a0;
 
-  /* Brand violet, taken from the Succend mark */
   --color-brand: #5b3fe0;
   --color-brand-dark: #241854;
   --color-brand-darker: #150c33;
@@ -21,25 +22,80 @@
   --color-brand-pale: #efeafd;
   --color-brand-pale-2: #f7f4fe;
 
-  /* Accents, drawn from the arrow/star mark */
   --color-xp: #2f9d63;
   --color-xp-glow: #6bd39a;
+
   --color-gold: #cd8f22;
   --color-gold-pale: #fbf0da;
+
   --color-danger: #c94444;
 
   --font-display: "Space Grotesk";
   --font-body: "Inter";
   --font-mono: "IBM Plex Mono";
 
-  --shadow-card: 0 1px 2px rgba(21, 12, 51, 0.04), 0 8px 24px -12px rgba(21, 12, 51, 0.12);
-  --shadow-pop: 0 12px 32px -8px rgba(91, 63, 224, 0.28);
+  --shadow-card:
+    0 1px 2px rgba(21, 12, 51, 0.04),
+    0 8px 24px -12px rgba(21, 12, 51, 0.12);
+
+  --shadow-pop:
+    0 12px 32px -8px rgba(91, 63, 224, 0.28);
+
+  color-scheme: light;
 }
+
+
+/* ================================
+   DARK THEME
+   ================================ */
+
+.dark {
+  --color-surface: #0e0b14;
+  --color-surface-raised: #17121f;
+  --color-surface-sunken: #09070d;
+
+  --color-line: #2c2638;
+  --color-line-strong: #403653;
+
+  --color-ink: #f7f4fc;
+  --color-ink-soft: #c3bcd0;
+  --color-ink-faint: #8e879d;
+
+  --color-brand: #7659f0;
+  --color-brand-dark: #b7a8ff;
+  --color-brand-darker: #e3ddff;
+  --color-brand-mid: #947ef4;
+  --color-brand-pale: #241c3d;
+  --color-brand-pale-2: #1b1629;
+
+  --color-xp: #45c982;
+  --color-xp-glow: #7ae0a5;
+
+  --color-gold: #e1a93b;
+  --color-gold-pale: #352915;
+
+  --color-danger: #ef6969;
+
+  --shadow-card:
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 12px 32px -12px rgba(0, 0, 0, 0.5);
+
+  --shadow-pop:
+    0 12px 32px -8px rgba(118, 89, 240, 0.35);
+
+  color-scheme: dark;
+}
+
+
+/* ================================
+   TAILWIND THEME
+   ================================ */
 
 @theme inline {
   --color-surface: var(--color-surface);
   --color-surface-raised: var(--color-surface-raised);
   --color-surface-sunken: var(--color-surface-sunken);
+
   --color-line: var(--color-line);
   --color-line-strong: var(--color-line-strong);
 
@@ -56,8 +112,10 @@
 
   --color-xp: var(--color-xp);
   --color-xp-glow: var(--color-xp-glow);
+
   --color-gold: var(--color-gold);
   --color-gold-pale: var(--color-gold-pale);
+
   --color-danger: var(--color-danger);
 
   --font-display: var(--font-display);
@@ -65,33 +123,172 @@
   --font-mono: var(--font-mono);
 }
 
+
+/* ================================
+   GLOBAL
+   ================================ */
+
 * {
   border-color: var(--color-line);
 }
 
 html {
+  background: var(--color-surface);
   color-scheme: light;
 }
 
-body {
-  background: var(--color-surface);
-  color: var(--color-ink);
-  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
+html.dark {
+  color-scheme: dark;
 }
 
-h1, h2, h3, h4, .font-display {
-  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  background: var(--color-surface);
+  color: var(--color-ink);
+
+  font-family:
+    var(--font-body),
+    ui-sans-serif,
+    system-ui,
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
+}
+
+
+/* ================================
+   KEEP SITE CONTENT ABOVE LIQUID
+   ================================ */
+
+/*
+ * FlowBackground lives at z-index 0.
+ *
+ * The actual website must therefore be above it.
+ *
+ * This prevents the liquid from visually covering:
+ * - cards
+ * - buttons
+ * - text
+ * - sections
+ * - footer
+ */
+
+main,
+footer {
+  position: relative;
+  z-index: 10;
+}
+
+
+/*
+ * Navbar is even higher because it should always
+ * remain above the liquid and the page content.
+ */
+
+header {
+  position: relative;
+  z-index: 50;
+}
+
+
+/* ================================
+   TYPOGRAPHY
+   ================================ */
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family:
+    var(--font-display),
+    ui-sans-serif,
+    system-ui,
+    sans-serif;
 }
 
 .font-mono-tabular {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family:
+    var(--font-mono),
+    ui-monospace,
+    monospace;
+
   font-variant-numeric: tabular-nums;
 }
 
-/* Respect reduced motion everywhere */
+
+/* ================================
+   LIQUID BACKGROUND
+   ================================ */
+
+.liquid-background {
+  /*
+   * The liquid should never interfere with
+   * clicking or hovering on the site.
+   */
+  pointer-events: none;
+
+  /*
+   * Prevent the liquid from creating a weird
+   * horizontal scrollbar.
+   */
+  width: 100vw;
+  height: 100vh;
+}
+
+
+/* LIGHT MODE BLOBS */
+
+.liquid-purple {
+  background: rgba(139, 92, 246, 0.30);
+}
+
+.liquid-pink {
+  background: rgba(236, 72, 153, 0.23);
+}
+
+.liquid-blue {
+  background: rgba(96, 165, 250, 0.24);
+}
+
+.liquid-purple-secondary {
+  background: rgba(168, 85, 247, 0.22);
+}
+
+
+/* DARK MODE BLOBS */
+
+.dark .liquid-purple {
+  background: rgba(124, 92, 246, 0.24);
+}
+
+.dark .liquid-pink {
+  background: rgba(217, 70, 239, 0.18);
+}
+
+.dark .liquid-blue {
+  background: rgba(59, 130, 246, 0.18);
+}
+
+.dark .liquid-purple-secondary {
+  background: rgba(139, 92, 246, 0.16);
+}
+
+
+/* ================================
+   REDUCED MOTION
+   ================================ */
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
@@ -99,10 +296,20 @@ h1, h2, h3, h4, .font-display {
   }
 }
 
+
+/* ================================
+   SELECTION
+   ================================ */
+
 ::selection {
   background: var(--color-brand-pale);
   color: var(--color-brand-darker);
 }
+
+
+/* ================================
+   FOCUS
+   ================================ */
 
 :focus-visible {
   outline: 2px solid var(--color-brand);
@@ -110,21 +317,44 @@ h1, h2, h3, h4, .font-display {
   border-radius: 4px;
 }
 
-/* Quest bar fill texture -- diagonal hazard stripe, the signature motif */
+
+/* ================================
+   QUEST BAR
+   ================================ */
+
 .quest-fill {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    rgba(255, 255, 255, 0.16) 0px,
-    rgba(255, 255, 255, 0.16) 6px,
-    transparent 6px,
-    transparent 14px
-  ),
-  linear-gradient(90deg, var(--color-xp), var(--color-xp-glow));
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.16) 0px,
+      rgba(255, 255, 255, 0.16) 6px,
+      transparent 6px,
+      transparent 14px
+    ),
+    linear-gradient(
+      90deg,
+      var(--color-xp),
+      var(--color-xp-glow)
+    );
 }
 
 @keyframes fill-in {
-  from { width: 0%; }
+  from {
+    width: 0%;
+  }
 }
+
 .quest-fill-animate {
-  animation: fill-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation:
+    fill-in 900ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.landing-page section {
+  background-color: transparent !important;
+}
+
+.landing-page .liquid-background {
+  pointer-events: none;
 }

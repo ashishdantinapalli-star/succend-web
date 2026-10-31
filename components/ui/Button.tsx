@@ -8,9 +8,12 @@ type Size = "sm" | "md" | "lg";
 const variantClasses: Record<Variant, string> = {
   primary:
     "bg-brand text-white hover:bg-brand-dark shadow-[var(--shadow-pop)] disabled:hover:bg-brand",
+
   secondary:
-    "bg-white text-ink border border-line-strong hover:border-brand hover:text-brand",
-  ghost: "text-ink-soft hover:text-ink hover:bg-surface-sunken",
+    "border border-line-strong bg-surface-raised text-ink hover:border-brand hover:bg-brand/5 hover:text-brand",
+
+  ghost:
+    "text-ink-soft hover:bg-surface-sunken hover:text-ink",
 };
 
 const sizeClasses: Record<Size, string> = {
@@ -20,7 +23,7 @@ const sizeClasses: Record<Size, string> = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed";
+  "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50";
 
 interface CommonProps {
   variant?: Variant;
@@ -40,11 +43,23 @@ interface ButtonAsLink extends CommonProps {
 }
 
 export function Button(props: ButtonAsButton | ButtonAsLink) {
-  const { variant = "primary", size = "md", children, className } = props;
-  const classes = cx(base, variantClasses[variant], sizeClasses[size], className);
+  const {
+    variant = "primary",
+    size = "md",
+    children,
+    className,
+  } = props;
+
+  const classes = cx(
+    base,
+    variantClasses[variant],
+    sizeClasses[size],
+    className
+  );
 
   if ("href" in props && props.href) {
     const { href } = props;
+
     return (
       <Link href={href} className={classes}>
         {children}
@@ -52,8 +67,15 @@ export function Button(props: ButtonAsButton | ButtonAsLink) {
     );
   }
 
-  const { variant: _v, size: _s, className: _c, children: _ch, href: _href, ...domProps } =
-    props as ButtonAsButton;
+  const {
+    variant: _variant,
+    size: _size,
+    className: _className,
+    children: _children,
+    href: _href,
+    ...domProps
+  } = props as ButtonAsButton;
+
   return (
     <button className={classes} {...domProps}>
       {children}

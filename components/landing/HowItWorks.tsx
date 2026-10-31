@@ -9,11 +9,6 @@ export function HowItWorks() {
           How It Works
         </h2>
 
-        <p className="mt-2 max-w-xl text-[14px] leading-relaxed text-ink-soft">
-          Turn a goal into a clear progression, track your progress, and
-          keep moving forward.
-        </p>
-
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <div className="rounded-2xl border border-line bg-surface-raised p-6">
             <p className="text-sm font-semibold text-brand-mid">01</p>

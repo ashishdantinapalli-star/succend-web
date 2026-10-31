@@ -1,167 +1,278 @@
-import { LogoMark, LogoWordmark } from "@/components/ui/Logo";
+import { LogoWordmark } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
-import { QuestBar } from "@/components/ui/QuestBar";
-import { LevelBadge } from "@/components/ui/LevelBadge";
-import { ArrowRight, Flame, Target, TrendingUp } from "lucide-react";
+import { RankEmblem } from "@/components/ui/rankemblem";
+
+import {
+  ArrowRight,
+  Flame,
+  Target,
+} from "lucide-react";
+
 import { Navbar } from "@/components/landing/Navbar";
 import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { LeaderboardPreview } from "@/components/landing/LeaderboardPreview";
 import { About } from "@/components/landing/About";
+import { FlowBackground } from "@/components/ui/flowbackground";
 
-const loopSteps = [
-  { n: "01", title: "Create a goal", body: "Name the target, set a deadline, break it into milestones." },
-  { n: "02", title: "Work toward it", body: "Succend keeps the goal visible and the next step obvious." },
-  { n: "03", title: "Log progress", body: "A quick entry updates your stats, streaks, and quest bar." },
-  { n: "04", title: "Complete it", body: "Hit the target and Succend closes the loop for you." },
-  { n: "05", title: "Earn XP", body: "Every goal and milestone pays out experience toward your level." },
-  { n: "06", title: "Level up", body: "New level, new unlocks — then it's on to the next goal." },
-];
-
-export default function LandingPage() {
+export default function Home() {
   return (
-    <div className="min-h-screen bg-surface">
+    <main className="min-h-screen bg-surface text-ink">
+      <FlowBackground />
+
       <Navbar />
 
-      <main>
-        {/* Hero */}
-        <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 pb-20 pt-10 lg:grid-cols-[1.05fr_0.95fr] lg:pb-28 lg:pt-16">
-          <div>
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-line-strong bg-brand-pale-2 px-3 py-1 text-[12px] font-medium text-brand-dark">
-              <LogoMark size={14} />
-              Plan. Track. Achieve. Level up.
-            </p>
-            <h1 className="font-display text-[40px] font-semibold leading-[1.08] tracking-tight text-ink sm:text-[52px]">
-              Goals stall in a list.
-              <br />
-              They move in a game.
+      {/* Hero */}
+      <section className="relative overflow-hidden px-6 pb-20 pt-20 sm:pb-28 sm:pt-28">
+        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2">
+          <div className="relative z-10">
+            <h1 className="max-w-2xl font-display text-5xl font-semibold leading-tight tracking-tight text-ink sm:text-6xl lg:text-7xl">
+              Turn your goals into{" "}
+              <span className="bg-gradient-to-r from-brand via-brand-mid to-brand-dark bg-clip-text text-transparent">
+                achievements.
+              </span>
             </h1>
-            <p className="mt-5 max-w-md text-[16px] leading-relaxed text-ink-soft">
-              Succend turns whatever you&apos;re working toward — a race, a
-              degree, a savings target — into goals with real stakes: log
-              progress, earn XP, level up, and unlock achievements as you go.
+
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
+              Succend turns self-improvement into a journey you can see,
+              track, and enjoy. Set goals, build consistency, earn XP, and
+              celebrate every step forward.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Button href="/signup" size="lg">
-                Create your first goal
-                <ArrowRight size={16} />
+
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <Button>
+                Start your journey
+                <ArrowRight className="ml-2 inline" size={18} />
               </Button>
-              <Button href="/login" variant="secondary" size="lg">
-                I already have an account
-              </Button>
-            </div>
-            <div className="mt-10 flex items-center gap-6 text-[13px] text-ink-faint">
-              <span className="flex items-center gap-1.5">
-                <Target size={15} /> Goal &amp; milestone tracking
-              </span>
-              <span className="flex items-center gap-1.5">
-                <TrendingUp size={15} /> XP, levels &amp; achievements
-              </span>
+
+              <a
+                href="#how-it-works"
+                className="inline-flex items-center rounded-xl border border-line bg-surface-raised px-5 py-3 text-sm font-medium text-ink transition hover:border-brand/40 hover:bg-brand/5"
+              >
+                See how it works
+              </a>
             </div>
           </div>
 
-          {/* Signature visual: a live-feeling goal card mid-progress */}
-          <div className="relative">
-            <div className="absolute -inset-4 -z-10 rounded-[28px] bg-gradient-to-br from-brand-pale to-transparent blur-xl" />
-            <div className="rounded-2xl border border-line bg-surface-raised p-6 shadow-[var(--shadow-card)]">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <LevelBadge level={7} size={40} />
-                  <div>
-                    <p className="text-[13px] font-semibold text-ink">Jordan Avery</p>
-                    <p className="flex items-center gap-1 text-[12px] text-ink-faint">
-                      <Flame size={12} className="text-gold" /> 12-day streak
+          {/* Sample profile card */}
+          <div className="relative mx-auto w-full max-w-md">
+            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-brand/15 via-transparent to-brand-mid/10 blur-2xl" />
+
+            <div className="relative rounded-2xl border border-line bg-surface-raised p-6 shadow-sm sm:p-7">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex min-w-0 items-center gap-3">
+                  <RankEmblem size={64} alt="GOD III rank emblem" />
+
+                  <div className="min-w-0">
+                    <p className="font-semibold text-ink">
+                      Jordan Avery
+                    </p>
+
+                    <p className="mt-0.5 text-sm font-medium text-brand">
+                      GOD III
+                    </p>
+
+                    <p className="mt-1 flex items-center gap-1 text-sm text-ink-soft">
+                      <Flame size={14} />
+                      12-day streak
                     </p>
                   </div>
                 </div>
-                <span className="rounded-full bg-brand-pale px-2.5 py-1 text-[11px] font-medium text-brand-dark">
+
+                <span className="shrink-0 rounded-full bg-brand/10 px-3 py-1 text-xs font-medium text-brand-dark">
                   Fitness
                 </span>
               </div>
 
-              <QuestBar current={340} max={600} label="Level 7 progress" className="mt-5" />
+              <div className="mt-7">
+                <div className="flex items-center justify-between gap-3 text-xs font-medium text-ink-soft">
+                  <span>LEVEL 7 PROGRESS</span>
+                  <span>340 / 600 XP</span>
+                </div>
 
-              <div className="mt-6 rounded-xl border border-line bg-surface-sunken p-4">
-                <p className="text-[13px] font-semibold text-ink">Run a sub-25-minute 5K</p>
-                <p className="mt-1 text-[12px] text-ink-faint">2 of 4 milestones complete</p>
-                <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-white ring-1 ring-inset ring-line">
-                  <div className="h-full w-[68%] rounded-full bg-brand" />
+                <div
+                  className="mt-3 h-2.5 overflow-hidden rounded-full bg-line"
+                  role="progressbar"
+                  aria-label="Level 7 XP progress"
+                  aria-valuemin={0}
+                  aria-valuemax={600}
+                  aria-valuenow={340}
+                >
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-brand to-brand-mid"
+                    style={{ width: `${(340 / 600) * 100}%` }}
+                  />
                 </div>
-                <div className="mt-3 flex items-center justify-between text-[12px]">
-                  <span className="text-ink-faint">Deadline Oct 15</span>
-                  <span className="font-medium text-brand-dark">+220 XP on completion</span>
+              </div>
+
+              <div className="mt-7 grid grid-cols-2 gap-3">
+                <div className="rounded-xl border border-line bg-surface p-4">
+                  <p className="text-xs text-ink-faint">
+                    Goals completed
+                  </p>
+                  <p className="mt-2 font-display text-2xl font-semibold text-ink">
+                    24
+                  </p>
                 </div>
+
+                <div className="rounded-xl border border-line bg-surface p-4">
+                  <p className="text-xs text-ink-faint">
+                    Total XP earned
+                  </p>
+                  <p className="mt-2 font-display text-2xl font-semibold text-ink">
+                    2,840
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 flex items-center gap-3 rounded-xl border border-line bg-surface p-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand">
+                  <Target size={19} />
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold text-ink">
+                    Daily movement
+                  </p>
+                  <p className="mt-1 text-xs text-ink-soft">
+                    Keep building your consistency
+                  </p>
+                </div>
+
+                <span className="shrink-0 text-xs font-medium text-brand">
+                  In progress
+                </span>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* The loop */}
-        <section className="border-t border-line bg-surface-raised">
-          <div className="mx-auto max-w-6xl px-6 py-16">
-            <h2 className="font-display text-[26px] font-semibold text-ink">
+      {/* The Succend loop */}
+      <section className="border-y border-line bg-surface-raised px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">
               The Succend loop
-            </h2>
-            <p className="mt-2 max-w-xl text-[14px] text-ink-soft">
-              Every goal on Succend moves through the same six-step cycle —
-              that repetition is what makes progress feel like momentum
-              instead of a chore.
             </p>
-            <div className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-              {loopSteps.map((step) => (
-                <div key={step.n} className="flex gap-4">
-                  <span className="font-mono-tabular text-[13px] font-semibold text-brand-mid">
-                    {step.n}
-                  </span>
-                  <div>
-                    <h3 className="text-[14px] font-semibold text-ink">{step.title}</h3>
-                    <p className="mt-1 text-[13px] leading-relaxed text-ink-faint">{step.body}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              Small actions. Real progress.
+            </h2>
           </div>
-        </section>
-        
-        {/* Features */}
-        <Features />
 
-        {/* HowItWorks */}
-        <HowItWorks />
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                number: "01",
+                title: "Create a goal",
+                description: "Define what you want to accomplish.",
+              },
+              {
+                number: "02",
+                title: "Work toward it",
+                description: "Turn your goal into consistent action.",
+              },
+              {
+                number: "03",
+                title: "Log progress",
+                description: "Record your effort and see how far you've come.",
+              },
+              {
+                number: "04",
+                title: "Earn achievements",
+                description: "Celebrate milestones and earn XP.",
+              },
+            ].map((step) => (
+              <div
+                key={step.number}
+                className="rounded-2xl border border-line bg-surface p-6 transition hover:-translate-y-1 hover:border-brand/40"
+              >
+                <span className="font-display text-sm font-semibold text-brand">
+                  {step.number}
+                </span>
 
-        {/* LeaderboardPreview */}
-        <LeaderboardPreview />
+                <h3 className="mt-4 font-display text-lg font-semibold text-ink">
+                  {step.title}
+                </h3>
 
-        {/* About */}
-        <About />
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        {/* Closing CTA */}
-        <section className="mx-auto max-w-6xl px-6 py-20 text-center">
-          <h2 className="font-display text-[28px] font-semibold text-ink">
-            Pick a goal. Start the loop.
+      <Features />
+
+      <HowItWorks />
+
+      <LeaderboardPreview />
+
+      <About />
+
+      {/* Final call to action */}
+      <section className="px-6 py-20 sm:py-24">
+        <div className="mx-auto max-w-4xl rounded-3xl border border-line bg-surface-raised px-6 py-12 text-center sm:px-12 sm:py-16">
+          <LogoWordmark />
+
+          <h2 className="mt-7 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+            Your next achievement starts with one step.
           </h2>
-          <p className="mx-auto mt-2 max-w-md text-[14px] text-ink-soft">
-            It takes about a minute to set up your first goal on Succend.
+
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-ink-soft">
+            Choose a goal, make progress, and keep moving forward.
+            Your journey is yours to build.
           </p>
-          <div className="mt-7 flex justify-center gap-3">
-            <Button href="/signup" size="lg">
-              Sign up free
-            </Button>
-            <Button href="/login" variant="secondary" size="lg">
-              Log in
+
+          <div className="mt-8">
+            <Button>
+              Start your journey
+              <ArrowRight className="ml-2 inline" size={18} />
             </Button>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
 
+      {/* Footer */}
       <footer className="border-t border-line px-6 py-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
-          <LogoWordmark />
-          <p className="text-[12px] text-ink-faint">
-            &copy; {new Date().getFullYear()} Succend. Version 0.1 prototype.
+          <p className="text-sm text-ink-soft">
+            © {new Date().getFullYear()} Succend. Keep moving forward.
           </p>
+
+          <div className="flex items-center gap-3 text-sm text-ink-soft">
+            <span>Follow us at</span>
+
+            <a
+              href="https://www.instagram.com/succendapp/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Succend on Instagram"
+              className="inline-flex items-center justify-center rounded-lg border border-line p-2 transition hover:border-brand/40 hover:text-brand"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+              </svg>
+            </a>
+          </div>
         </div>
       </footer>
-    </div>
+    </main>
   );
 }
